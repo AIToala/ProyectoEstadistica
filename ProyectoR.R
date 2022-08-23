@@ -12,7 +12,6 @@ install.packages("GGally")
 install.packages("nortest")
 install.packages("plotly")
 
-
 # Carga de librerias.
 
 library("readxl") 		#Excel to dataframes
@@ -24,6 +23,7 @@ library("GGally")		  #Mas funciones para ggplot2
 library("nortest")		#Tests de normalidad
 library("ggplot2")		#Graficos
 library("plotly")
+
 
 ###Revisar si existen mejores alternativas.
 
@@ -300,6 +300,79 @@ redes_prom_boxplot
 ggplotly(redes_prom_boxplot)
 
 # Estadistica descriptiva univariante
+#Variables Cualitativas
+#PROMEDIO
+#Sexo vs Promedio
+sexo_prom_boxplot<-ggplot(data, aes(x=Sexo,y=Promedio))+
+  geom_boxplot(fill = 2)+
+  labs(title ="Diagrama de cajas de Sexo - Promedio\n",y="Horas promedio")+
+  stat_boxplot(geom = "errorbar",
+               width = 0.15)
+ggplotly(sexo_prom_boxplot)
+#Trabaja y Promedio
+trab_prom_boxplot<-ggplot(data, aes(x=Trabaja,y=Promedio))+
+  geom_boxplot(fill = 2)+
+  labs(title ="Diagrama de cajas de Trabaja - Promedio\n",y="Horas promedio")+
+  stat_boxplot(geom = "errorbar",
+               width = 0.15)
+ggplotly(trab_prom_boxplot)
+#Computador Exclusivo y Promedio
+comp_prom_boxplot<-ggplot(data, aes(x=Computador_uso_exclusivo,y=Promedio))+
+  geom_boxplot(fill = 2)+
+  labs(title ="Diagrama de cajas de Uso exclusivo de computador - Promedio\n",y="Horas promedio")+
+  stat_boxplot(geom = "errorbar",
+               width = 0.15)
+ggplotly(comp_prom_boxplot)
+#Despierta_mas_de_1vez_durante_noche y Promedio
+despi_prom_boxplot<-ggplot(data, aes(x=Despierta_mas_de_1vez_durante_noche,y=Promedio))+
+  geom_boxplot(fill=2)+
+  labs(title ="Diagrama de cajas de Despertares Nocturnos - Promedio\n",y="Horas promedio")+
+  stat_boxplot(geom = "errorbar",
+               width = 0.15)
+ggplotly(despi_prom_boxplot)
+#Carrera y promedio
+carr_prom_boxplot<-ggplot(data, aes(x=Carrera,y=Promedio,fill=Carrera))+
+  geom_boxplot()+
+  labs(title ="Diagrama de cajas de Carrera - Promedio\n",y="Horas promedio")+
+  stat_boxplot(geom = "errorbar",
+               width = 0.15)+
+  theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank() 
+  )
+ggplotly(carr_prom_boxplot)
+#Frecuencia_semanal_actividad_fisica y promedio
+frec_prom_boxplot<-ggplot(data, aes(x=Frecuencia_semanal_actividad_fisica,y=Promedio))+
+  geom_boxplot(fill=2)+
+  labs(title ="Diagrama de cajas de Frecuencia semanal de actividad fisica - Promedio\n",y="Horas promedio")+
+  stat_boxplot(geom = "errorbar",
+               width = 0.15)
+ggplotly(frec_prom_boxplot)
+
+#HORAS SUEÑO
+#Horas_promedio_diarias_sueño y Trabaja
+trab_sueño_boxplot<-ggplot(data, aes(x=Trabaja,y=Horas_promedio_diarias_sueño))+
+  geom_boxplot(fill=2)+
+  labs(title ="Diagrama de cajas de Horas promedio de sueño - Trabaja\n",y="Horas promedio")+
+  stat_boxplot(geom = "errorbar",
+               width = 0.15)
+#HORAS ESTUDIO
+#Horas_promedio_diarias_estudio y Trabaja
+trab_estudio_boxplot<-ggplot(data, aes(x=Trabaja,y=Horas_promedio_diarias_estudio))+
+  geom_boxplot(fill=2)+
+  labs(title ="Diagrama de cajas de Horas promedio de estudio - Trabaja\n",y="Horas promedio")+
+  stat_boxplot(geom = "errorbar",
+               width = 0.15)
+#HORAS EN REDES
+#Horas_promedio_diarias_en_redes y Trabaja
+trab_redes_boxplot<-ggplot(data, aes(x=Trabaja,y=Horas_promedio_diarias_en_redes))+
+  geom_boxplot(fill=2)+
+  labs(title ="Diagrama de cajas de Horas promedio en redes - Trabaja\n",y="Horas promedio")+
+  stat_boxplot(geom = "errorbar",
+               width = 0.15)
+#
+ggplotly(trab_sueño_boxplot)
+#HORAS ESTUDIO
+#Horas_promedio_diarias_estudio y 
 # Variables Cuantitativas
 #Matriz de correlacion
 cor_matrix_cuanti<-cor(data[, c('Promedio','Materias_Promedio_x_Termino','Horas_promedio_diarias_en_redes','Horas_promedio_diarias_estudio','Horas_promedio_diarias_sueño')])
@@ -313,5 +386,51 @@ ggcorrplot(cor_matrix_cuanti,
            lab = TRUE)
 
 
+#Intervalos de confianza
+hombres<-data[data$Sexo=="M", ]
+mujeres<-data[data$Sexo=="F", ]
 
+prom_hombres_8<-hombres[hombres$Promedio>8,]
+
+shapiro.test(hombres$Promedio)
+shapiro.test(mujeres$Promedio)
+
+# F test to compare two variances
+var.test(x=hombres$Promedio, y=mujeres$Promedio,
+      conf.level = 0.95)
+# T Test to compare differences of means
+t.test(x=mujeres$Promedio, y=hombres$Promedio,
+       paired=FALSE, var.equal=FALSE,
+       conf.level = 0.95)
+t.test(x=hombres$Promedio, y=mujeres$Promedio,
+       paired=FALSE, var.equal=FALSE,
+       conf.level = 0.95)
+# Test to compare proportions
+prop.test(x=10,n=77,conf.level=0.95)
+
+
+var_cuantitativas <- subset(raw_data, select = c("Promedio","Materias_Promedio_x_Termino","Horas_promedio_diarias_sueño","Horas_promedio_diarias_estudio","Horas_promedio_diarias_en_redes") )
+
+#Prueba Lilliefors (Kolmogorov-Smirnov) con la función lillie.test del paquete nortest.
+#Prueba Pearson chi-square con la función pearson.test del paquete nortest.  
+#chisq.test(data$Promedio)
+
+shapiro.test(data$Horas_promedio_diarias_estudio)
+shapiro.test(data$Promedio)
+lillie.test(data$Horas_promedio_diarias_estudio)
+lillie.test(data$Promedio)
+
+
+
+regresion <- lm(Horas_promedio_diarias_estudio ~ Promedio, data = data, na.action=na.exclude)
+summary(regresion)
+#plot(data$Promedio, data$Horas_promedio_diarias_estudio, xlab='Promedio', ylab='horas estudio')
+#abline(regresion)
+graf2<-ggplot(data=regresion, aes(x=Horas_promedio_diarias_estudio,y=Promedio))
+graf2+geom_point()+geom_smooth(method="lm")
+
+regresion <- lm(Promedio ~ Horas_promedio_diarias_estudio, data = data, na.action=na.exclude)
+summary(regresion)
+graf2<-ggplot(data=regresion, aes(x=Promedio,y=Horas_promedio_diarias_estudio))
+graf2+geom_point()+geom_smooth(method="lm")
 
