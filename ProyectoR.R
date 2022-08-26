@@ -11,6 +11,7 @@ install.packages("moments")
 install.packages("GGally")
 install.packages("nortest")
 install.packages("plotly")
+install.packages("summarytools")
 
 # Carga de librerias.
 
@@ -392,6 +393,8 @@ mujeres<-data[data$Sexo=="F", ]
 
 prom_hombres_8<-hombres[hombres$Promedio>8,]
 
+var(hombres$Promedio)
+var(mujeres$Promedio)
 shapiro.test(hombres$Promedio)
 shapiro.test(mujeres$Promedio)
 
@@ -420,17 +423,14 @@ shapiro.test(data$Promedio)
 lillie.test(data$Horas_promedio_diarias_estudio)
 lillie.test(data$Promedio)
 
-
-
-regresion <- lm(Horas_promedio_diarias_estudio ~ Promedio, data = data, na.action=na.exclude)
-summary(regresion)
 #plot(data$Promedio, data$Horas_promedio_diarias_estudio, xlab='Promedio', ylab='horas estudio')
 #abline(regresion)
-graf2<-ggplot(data=regresion, aes(x=Horas_promedio_diarias_estudio,y=Promedio))
-graf2+geom_point()+geom_smooth(method="lm")
 
-regresion <- lm(Promedio ~ Horas_promedio_diarias_estudio, data = data, na.action=na.exclude)
+
+regresion <- lm(Promedio ~ Peso, data = raw_data, na.action=na.omit)
 summary(regresion)
-graf2<-ggplot(data=regresion, aes(x=Promedio,y=Horas_promedio_diarias_estudio))
-graf2+geom_point()+geom_smooth(method="lm")
-
+grafregresion1<-ggplot(data=regresion, aes(x=Promedio,y=Peso))+
+  geom_point()+
+  geom_smooth(method='lm',formula=y~x, se=FALSE, col='dodgerblue1')+
+  theme_light()
+grafregresion1
