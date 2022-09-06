@@ -1,50 +1,45 @@
 ---
-title: "PROYECTO FINAL GRUPO2"
-author: "Steven Escobar, Jacobo Geuerro, Yairis Córdova, Andrés Toala, Elkin Ramirez"
+title: "PROYECTO FINAL GRUPO 2"
+author: "Steven Escobar, Jacobo Gerrero, Yairis Córdova, Andrés Toala, Elkin Ramirez"
 date: '2022-08-15'
 output: pdf_document
 bibliography: references.bib
+csl: ieee.csl
+link-citations: yes
 ---
 
 # **TÍTULO DE ESTUDIO**
 
-ESTUDIO Y ANÁLISIS DE VARIABLES QUE INFIEREN Y MOLEDAN EL PROMEDIO ACADÉMICO DE ESTUDIANTES
+ESTUDIO Y ANÁLISIS DE VARIABLES QUE INFIEREN Y MODELEN EL RENDIMIENTO ACADÉMICO DE ESTUDIANTES
 
-# **CAPÍTULO 1.-**
+# 1. INTRODUCCIÓN
 
-### 1. INTRODUCCIÓN
-
-Mediante una base de datos proporcionados por la profesora Heidy Roa, fue factible el estudio y análisis de datos provenientes de estudiantes de 2 paralelos. De esta base de datos se pudo identficar tanto variables cuantitativas como cualitativas, como por ejemplo de ellas destacan para variables cuantitativas el promedio, las horas de estudio diarias, horas promedio diaria de sueño, entre otros.
+Mediante una base de datos proporcionados por la profesora Heidy Roa, fue factible el estudio y análisis de datos provenientes de estudiantes de 2 paralelos. De esta base de datos se pudo identificar tanto variables cuantitativas como cualitativas, como por ejemplo de ellas destacan para variables cuantitativas el promedio, las horas de estudio diarias, horas promedio diaria de sueño, entre otros.
 
 Mientras que para las variables cualitativas fueron de interés si el estudiante trabajaba, el sexo, si despierta más de una vez en la noche y si el estudiante tiene computador de uso exclusivo. Todas estas variables a estudiar principalmente despertaron nuestra curiosidad ya que de cierta manera inciden en el desempeño del estudiante mostrado en el promedio.
 
-De aquí en adelante es que se propuso encontrar la variable que incida más en el promedio mediante correlación de varibales y pruebas de hipótesis para descartar o afirmar casos que vayamos encontrando en el transcurso del estudio.
+De aquí en adelante es que se propuso encontrar la variable que incida más en el promedio mediante correlación de variables y pruebas de hipótesis para descartar o afirmar casos que vayamos encontrando en el transcurso del estudio.
 
-# **CAPÍTULO 2.-**
 
-### 2. DESCRIPCIÓN DEL PROBLEMA DE ESTUDIO
+# 2. DESCRIPCIÓN DEL PROBLEMA DE ESTUDIO
 
-Una vez encontrado las medidad estadísticas con sus gráficos descriptivos para cada variable respectiva y en función de que variable corresponda (cualitativa o cuantitativa). Procedemos a calcular una matriz de correlación la cual arrojará información acerca de que variables se correlacionan brindando un nivel significativo haciendolo posible de estudio para una regresión lineal.
+Una vez encontrado las medidas estadísticas con sus gráficos descriptivos para cada variable respectiva y en función de que variable corresponda (cualitativa o cuantitativa). Procedemos a calcular una matriz de correlación la cual arrojará información acerca de que variables se correlacionan brindando un nivel significativo haciéndolo posible de estudio para una regresión lineal.
 
 Por otro lado, se tuvo como inferencia que la variable cualitativa de Trabajo puede incidir mucho en el rendimiento de un estudiante por lo cual se procede a realizar una prueba de hipótesis relacionando el promedio del rendimiento académico con los estudiantes que trabajan. Otra hipótesis a trabajar fue la diferencia de varianza entre mujeres y hombres para compararlos y conocer cual de los dos tienden más a promedios mayores a 8.
 
-# **CAPÍTULO 3.-**
+# 3. OBJETIVOS
 
-### 3. OBJETIVOS
-
-#### 3.1 OBJETIVO GENERAL <br>
+## 3.1 OBJETIVO GENERAL <br>
 
 -   Identificar variables que expliquen el comportamiento del promedio académico de los estudiantes encuestados de dos paralelos de la Universidad Politécnica del Litoral.
 
-#### 3.2 OBJETIVOS ESPECÍFICOS <br>
+## 3.2 OBJETIVOS ESPECÍFICOS <br>
 
--   Plantear hipótesis que nos ayuden a descartar o verficar la relación con respecto al comportamiento de una variable cuantitativa importante en nuestra investigación, con respecto a una variable cualitativa.
+-   Plantear hipótesis que nos ayuden a descartar o verificar la relación con respecto al comportamiento de una variable cuantitativa importante en nuestra investigación, con respecto a una variable cualitativa.
 
 -   Generar un modelo de regresión lineal que nos ayude a predecir el comportamiento del promedio académico de los estudiantes, mediante una ecuación que nos arrojará dicha gráfica de regresión.
 
-# CAPÍTULO 4.-
-
-### 4. MATERIALES
+# 4. MATERIALES
 
 Como punto a seguir en nuestro proyecto, se debía escoger al menos 5 variables cuantitativas y 4 variables cualitativas. Como se mencionó anteriormente, nuestro enfoque es encontrar variables que modelen e infieran con el promedio académico de los estudiantes. Por consiguiente, se escogieron las siguientes variables:
 
@@ -57,11 +52,11 @@ Como punto a seguir en nuestro proyecto, se debía escoger al menos 5 variables 
 |                                         | Horas promedio diarias de sueño        |
 |                                         | Frecuencia semanal de actividad física |
 
-Posterior a definir las variables, se procedió con las medidad estadísticas para cada variable cuantitativa, pero la de esencial enfoque será la de la media del promedio académico cuyo valor es: 7.75.
+Posterior a definir las variables, se procedió con las medidas estadísticas para cada variable cuantitativa, pero la de esencial enfoque será la de la media del promedio académico cuyo valor es: 7.75.
 
-Una vez definida la variables cuantitativas se podrá realizar una matriz de correlación la cuál mostrará que variables tienen una correlación significativa, las cuáles se podrán analizar posteriormente en un gráfico de regresión lineal. Y en especial donde 1 de las 2 variables seal el promedio académico.
+Una vez definida la variables cuantitativas se podrá realizar una matriz de correlación la cuál mostrará que variables tienen una correlación significativa, las cuáles se podrán analizar posteriormente en un gráfico de regresión lineal. Y en especial donde 1 de las 2 variables sea el promedio académico.
 
-Siguiendo uno de los objetivos específicos para descartar o verificar relaciones entre variables, de aquí se podrá plantear la hipótesis donde se enununcia que aquellos estudiantes que trabajan tienen un promedio menor a la media . Para esto se plantea la H0=7.75 y H1\<7.75 donde
+Siguiendo uno de los objetivos específicos para descartar o verificar relaciones entre variables, de aquí se podrá plantear la hipótesis donde se enuncia que aquellos estudiantes que trabajan tienen un promedio menor a la media . Para esto se plantea la H0=7.75 y H1\<7.75 donde
 
 ```{r variables, include=FALSE}
 library(agricolae)
@@ -72,29 +67,28 @@ library(ggplot2)
 library(ggcorrplot)
 library(fdth)
 library(Hmisc)
-
+# Datos
 datos_est <- read_excel("Base2DatosEstudiantes.xlsx")
-
+# Datos cuantitativos
 datos_estcuant = subset(datos_est, select = c("Promedio","Materias_Promedio_x_Termino","Horas_promedio_diarias_sueño","Horas_promedio_diarias_estudio","Horas_promedio_diarias_en_redes") )
-
+# Tratamiento de datos
 datos_est$Trabaja<-ifelse(datos_est$Trabaja!="1", "NO", datos_est$Trabaja)
 datos_est$Trabaja<-ifelse(datos_est$Trabaja=="1", "SI", datos_est$Trabaja)
 
 datos_est$Despierta_mas_de_1vez_durante_noche<-ifelse(datos_est$Despierta_mas_de_1vez_durante_noche!="1", "NO", datos_est$Despierta_mas_de_1vez_durante_noche)
 datos_est$Despierta_mas_de_1vez_durante_noche<-ifelse(datos_est$Despierta_mas_de_1vez_durante_noche=="1", "SI", datos_est$Despierta_mas_de_1vez_durante_noche)
 
+# Factores
 datos_est$Sexo= as.factor(datos_est$Sexo)
 datos_est$Trabaja= as.factor(datos_est$Trabaja)
 datos_est$Computador_uso_exclusivo= as.factor(datos_est$Computador_uso_exclusivo)
 datos_est$Despierta_mas_de_1vez_durante_noche= as.factor(datos_est$Despierta_mas_de_1vez_durante_noche)
 datos_est$Carrera= as.factor(datos_est$Carrera)
+
 ```
 
 
-
-# CAPÍTULO 5.-
-
-### 5. RESULTADOS
+# 5. RESULTADOS
 
 Al realizar una análisis y estudio de las variables que podrían inferir en el rendimiento académico de estudiantes, se pudo observar los siguientes resultados:
 
@@ -112,12 +106,35 @@ Ya que los valores p calculados en todas las pruebas anteriores son considerable
 * **Realizamos una comparación en base a las Horas Promedio diarias de estudio y si el estudiante trabaja o no.**
 
 ```{r analisis_THest, echo=FALSE, fig.align='center'}
-ggplot(datos_est, aes(x=Trabaja,y=Horas_promedio_diarias_estudio))+
-  geom_boxplot(fill=2)+
+ggplot(datos_est, aes(x=Trabaja,y=Horas_promedio_diarias_estudio, fill=Trabaja))+
+  geom_boxplot()+
   labs(title ="Diagrama de cajas de Horas promedio de estudio - Trabaja\n",y="Horas Estudio")+
   stat_boxplot(geom = "errorbar",
                width = 0.15)
+trabajan_Est=datos_est[datos_est$Trabaja=="SI",]
+noTrabajan_Est= datos_est[datos_est$Trabaja=="NO",]
 ```
+
+Al realizar un diagrama de cajas comparativo entre si el estudiante se encuentra trabajando o no y sus horas promedio diarias de estudio empleadas, observamos que en sus representaciones en terminos de medias de cada sección son exactamente similares.
+
+Debido a esto plantemos las correspondientes hipótesis para corroborar que esto sea cierto, $H_{o}: Var_1 = Var_2$  vs. $H_{a}: Var_1 \neq Var_2$.
+
+```{r varTest1, echo=FALSE}
+var.test(x=trabajan_Est$Horas_promedio_diarias_estudio, y=noTrabajan_Est$Horas_promedio_diarias_estudio,conf.level = 0.95)
+```
+
+Que mediante un F-Test podemos observar que $0.4955 > \alpha;\alpha=0.05$ por lo cual hay evidencia suficiente para indicar que ambas observaciones poseen diferentes varianzas.
+
+Ante lo cual planteamos las hipótesis para observar si los estudiantes que trabajan y los que no trabajan poseen iguales promedios de horas de estudio diarias, $H_{o}: \mu_0 = \mu_1$  vs. $H_{a}: \mu_0 \neq \mu_1$
+
+```{r tTest1, echo=FALSE}
+t.test(x=trabajan_Est$Horas_promedio_diarias_estudio, y=noTrabajan_Est$Horas_promedio_diarias_estudio, paired=FALSE, var.equal=FALSE, alternative=c("two.sided"), 
+       conf.level = 0.95)
+```
+
+Y mediante un T-test para diferencia de medias con varianzas desiguales, obtenemos que $0.7959 > \alpha;\alpha=0.05$. 
+
+Con esto indicamos que hay evidencia suficiente de que el promedio de horas de estudio de los estudiantes que trabajan y el de estudiantes que no trabajan son iguales.
 
 * **Realizamos una comparación entre el rendimiento académico de hombres y mujeres. Mujeres > Hombres**
 
@@ -129,7 +146,7 @@ ggplot(data=datos_est, aes(y = Promedio, x = Sexo, fill=Sexo)) +
 Al realizar un diagrama de cajas comparativo entre hombres y mujeres observamos una ligera diferencia en sus representaciones lo que indica que las mujeres están por encima de los hombres en términos de medias.
 Debido a esto planteamos las correspondientes hipótesis $H_{o}: Var_1 = Var_2$  vs. $H_{a}: Var_1 \neq Var_2$.
 
-```{r varTest1, echo=FALSE}
+```{r varTest2, echo=FALSE}
 var.test(x=hombres$Promedio, y=mujeres$Promedio,conf.level = 0.95)
 ```
 
@@ -137,12 +154,12 @@ Que mediante un F-Test podemos observar que $0.1403 > \alpha;\alpha=0.05$ por lo
 
 Ante lo cual planteamos las hipótesis para observar si las mujeres poseen mejor rendimiento académico que los hombres, $H_{o}: \mu_0 = \mu_1$  vs. $H_{a}: \mu_0 \geq \mu_1$
 
-```{r varTest2, echo=FALSE}
+```{r tTest2, echo=FALSE}
 t.test(x=mujeres$Promedio, y=hombres$Promedio, paired=FALSE, var.equal=TRUE, alternative=c("greater"), 
        conf.level = 0.95)
 ```
 
-Y mediante un T-test para diferencia de medias con varianzas iguales, obtenemos que $0.01014 > \alpha;\alpha=0.05$. 
+Y mediante un T-test para diferencia de medias con varianzas iguales, obtenemos que $0.01014 < \alpha;\alpha=0.05$. 
 
 Con esto indicamos que hay evidencia suficiente de que el promedio del rendimiento de las mujeres es mejor que las de los hombres.
 
@@ -182,7 +199,9 @@ Al realizar el análisis del modelo notamos varios factores que indican que el m
 4. El valor p del F estadístico también nos indica que el modelo planteado no es apropiado para modelizar los datos.
 
 
-### 6. CONCLUSIONES
+# 6. CONCLUSIONES
+
+* Dado el análisis realizado podemos concluir que la media de horas promedio de estudio que realizan estudiantes que trabajan es igual al de estudiantes que no trabajan, correspondiente a las observaciones analizadas dentro de la materia de Estadística.
 
 * Logramos concluir de manera explicada que las mujeres dentro de las observaciones realizadas presentan (en promedio) mejor rendimiento académico que los hombres dentro de la materia de Estadística.
 
@@ -192,17 +211,20 @@ Al realizar el análisis del modelo notamos varios factores que indican que el m
 
 * Al realizar un modelo de regresión lineal con la variable con mayor correlación lineal (Horas_promedio_diarias_estudio) se pudo corroborar que no es posible aceptar el modelo debido a diversos factores tales como que la modelización de los datos no es apropiada, no hay evidencias suficientes para determinar que la variable predictora contribuya al modelo planteado, elevados valores residuales que imposibilitan un modelo apropiado y además su baja fuerza de asociación lineal la cual esta por debajo del 5%. Debido a estos factores, se concluye que con un modelo de regresión lineal simple resulta difícil poder explicar o denotar factores que individualmente afecten al rendimiento académico.
 
-Dado las conclusiones respectivas de esta investigación, podemos observar que un modelo de regresión lineal simple resulta poco efectivo para explicar los posibles factores del rendimiento académico de los estudiantes dentro de la materia de Estadística. Por lo cual es necesario que se lleve a cabo un análisis más profundo de los datos con más variables que únicamente no denoten las estrategias de aprendizaje o las horas de estudio u ocio, sino más bien con variables socioeconomicas, psicológicas, institucionales, etc, como lo denotan algunas investigaciones sobre el rendimiento académico. aqui se insertan bibliografias y se empieza a hablar de ellas. fin.
+Dado las conclusiones respectivas de esta investigación, podemos observar que un modelo de regresión lineal simple resulta poco efectivo para explicar los posibles factores del rendimiento académico de los estudiantes dentro de la materia de Estadística. Por lo cual es necesario que se lleve a cabo un análisis más profundo de los datos con más variables que únicamente no denoten las estrategias de aprendizaje o las horas de estudio u ocio, sino más bien con variables socioeconomicas, psicológicas, institucionales, etcétera, como lo denotan algunas investigaciones sobre el rendimiento académico tales como aquel que indica como la motivación del estudiante y otros factores como la estrategia de aprendizaje @factAcd1 pueden dar mejoras en el rendimiento académico de un estudiante. Tambien finalmente, podemos observar como en otros campos de investigación usan nubes de variables, minería de datos y formulaciones de modelos estadísticos para predecir si un estudiante tendrá o no un buen rendimiento durante un periodo de tiempo [@formulation; @dataMining; @clusterData], demostrando así la complejidad de analizar y encontrar factores influyentes en el rendimiento académico de los estudiantes.
 
-### 7. RECOMENDACIONES
+# 7. RECOMENDACIONES
 
-* Procurar realizar encuestas con respuestas apegadas a la realidad y a responder correctamente las preguntas que se le son asignadas y así evitar datos en blanco o datos inexplicables.
+* Procurar realizar encuestas con respuestas apegadas a la realidad y a gestionar las respuestas de los encuestados para que sean ingresadas correctamente, evitando así datos en blanco o datos inexplicables.
 
-* Recomendamos realizar un correcto tratamiento de los datos dado que debido a fallas humanas o fallas computacionales es posible que ciertos factores sean ignorados.
+* Recomendamos realizar un correcto tratamiento de los datos dado que debido a fallas humanas o fallas computacionales es posible que ciertos factores sean ignorados debido a un mal ingreso de datos o a una mala interpretación.
 
-* 
+* Al realizar las correspondientes pruebas de hipótesis tener en cuenta la hipótesis formulada y el correcto testeo a aplicar.
 
 
-### 8. BIBLIOGRAFÍA
+# 8. BIBLIOGRAFÍA
 
-### 9. ANEXOS
+<div id="refs"></div>
+
+
+# 9. ANEXOS

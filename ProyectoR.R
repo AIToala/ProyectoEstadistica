@@ -10,7 +10,7 @@ install.packages("ggcorrplot")
 install.packages("moments")
 install.packages("GGally")
 install.packages("nortest")
-install.packages("plotly")
+install.packages("ggplotly")
 install.packages("summarytools")
 
 # Carga de librerias.
@@ -29,83 +29,57 @@ library("plotly")
 ###Revisar si existen mejores alternativas.
 
 # Carga inicial de datos a analizar.
-
+setwd("C:/Users/ai_to/Desktop/ProyectoEstadistica")
 raw_data <- read_excel("Base2DatosEstudiantes.xlsx")
 str(raw_data)
 
 # Selección de datos a analizar.
-data = subset(raw_data, select = c("Matricula","Sexo","Trabaja","Computador_uso_exclusivo","Despierta_mas_de_1vez_durante_noche","Carrera","Promedio","Materias_Promedio_x_Termino","Frecuencia_semanal_actividad_fisica","Horas_promedio_diarias_sueño","Horas_promedio_diarias_estudio","Horas_promedio_diarias_en_redes") )
+data = subset(raw_data, select = c("Sexo","Trabaja","Computador_uso_exclusivo","Despierta_mas_de_1vez_durante_noche","Promedio","Materias_Promedio_x_Termino","Horas_promedio_diarias_sueño","Horas_promedio_diarias_estudio","Horas_promedio_diarias_en_redes") )
 # Estructura de datos con problemas.
 str(data)
 
 # Reestructuración de datos cualitativos
-data[,c("Trabaja","Computador_uso_exclusivo","Despierta_mas_de_1vez_durante_noche","Frecuencia_semanal_actividad_fisica")]<-lapply(data[,c("Trabaja","Computador_uso_exclusivo","Despierta_mas_de_1vez_durante_noche","Frecuencia_semanal_actividad_fisica")] , as.character)
+data[,c("Trabaja","Computador_uso_exclusivo","Despierta_mas_de_1vez_durante_noche")]<-lapply(data[,c("Trabaja","Computador_uso_exclusivo","Despierta_mas_de_1vez_durante_noche")] , as.character)
 
 # Estructura de datos solucionado.
 str(data)
 
 # Solucion a datos cualitativos con valores no respondidos durante encuesta.
-data$Trabaja<-ifelse(data$Trabaja=="0", "NO INFO", data$Trabaja)
-data$Despierta_mas_de_1vez_durante_noche<-ifelse(data$Despierta_mas_de_1vez_durante_noche=="0", "NO INFO", data$Despierta_mas_de_1vez_durante_noche)
-data$Carrera<-chartr("ÁÉÍÓÚ", "AEIOU", toupper(data$Carrera))
-data$Carrera<-ifelse(data$Carrera=="TELECO","TELECOMUNICACIONES",data$Carrera)
-data$Frecuencia_semanal_actividad_fisica<-ifelse(data$Frecuencia_semanal_actividad_fisica=="5","3",data$Frecuencia_semanal_actividad_fisica)
+data$Trabaja<-ifelse(data$Trabaja!="1", "NO", data$Trabaja)
+data$Trabaja<-ifelse(data$Trabaja=="1", "SI", data$Trabaja)
+
+data$Despierta_mas_de_1vez_durante_noche<-ifelse(data$Despierta_mas_de_1vez_durante_noche!="1", "NO", data$Despierta_mas_de_1vez_durante_noche)
+data$Despierta_mas_de_1vez_durante_noche<-ifelse(data$Despierta_mas_de_1vez_durante_noche=="1", "SI", data$Despierta_mas_de_1vez_durante_noche)
 
 # Estadistica descriptiva univariante
 # Variables Cualitativas
 # Sexo
-sex_bd<- ggplot(data) + aes(x = Sexo, fill = Sexo) +
+ggplot(data) + aes(x = Sexo, fill = Sexo) +
   geom_bar() + 
   labs(title ="Diagrama de Barra de Sexo\n", x="Sexo", y="Frecuencia") +
   geom_text(stat='count', aes(label=..count..), vjust=1)
 
-ggplotly(sex_bd)
-
 
 # Trabaja
-works_bd<- ggplot(data) + aes(x = Trabaja, fill = Trabaja) +
+ggplot(data) + aes(x = Trabaja, fill = Trabaja) +
   geom_bar() + 
   labs(title ="Diagrama de Barra de Estudiantes que trabajan\n", x="Trabaja", y="Frecuencia") +
   geom_text(stat='count', aes(label=..count..), vjust=1)
 
-ggplotly(works_bd)
 
 # Computador USO EXCLUSIVO
-computador_bd<- ggplot(data) + aes(x = Computador_uso_exclusivo, fill = Computador_uso_exclusivo) +
+ggplot(data) + aes(x = Computador_uso_exclusivo, fill = Computador_uso_exclusivo) +
   geom_bar() + 
   labs(title ="Diagrama de Barra de Estudiantes con computador de uso exclusivo\n", x="Computador uso exclusivo", y="Frecuencia") +
   geom_text(stat='count', aes(label=..count..), vjust=1)
 
-ggplotly(computador_bd)
 
 # Despierta mas de 1 vez durante noche
-despNoche_bd<- ggplot(data) + aes(x = Despierta_mas_de_1vez_durante_noche, fill = Despierta_mas_de_1vez_durante_noche) +
+ggplot(data) + aes(x = Despierta_mas_de_1vez_durante_noche, fill = Despierta_mas_de_1vez_durante_noche) +
   geom_bar() + 
   labs(title ="Diagrama de Barra de Estudiantes que despiertan mas de 1 vez durante la noche\n", x="Despierta mas de 1 vez durante noche", y="Frecuencia") +
   geom_text(stat='count', aes(label=..count..), vjust=1)
 
-ggplotly(despNoche_bd)
-
-# Carrera
-
-carrera_bd<- ggplot(data) + aes(x = Carrera, fill = Carrera) +
-  geom_bar() + 
-  labs(title ="Diagrama de Barra de Carreras seguidas por Estudiantes\n", x="Carreras", y="Frecuencia") +
-  geom_text(stat='count', aes(label=..count..), vjust=1)+
-  theme(axis.text.x=element_blank(),
-        axis.ticks.x=element_blank() 
-  )
-
-ggplotly(carrera_bd)
-
-# Frecuencia Semanal Actividad Fisica
-
-frec_act_fis_bd<- ggplot(data) + aes(x = Frecuencia_semanal_actividad_fisica, fill = Frecuencia_semanal_actividad_fisica) +
-  geom_bar() + 
-  labs(title ="Diagrama de Barra de Frecuencia Semanal de Actividad Fisica de Estudiantes\n", x="Frecuencia semanal de actividad fisica", y="Frecuencia") +
-  geom_text(stat='count', aes(label=..count..), vjust=1)
-
-ggplotly(frec_act_fis_bd)
 
 #Variables Cuantitativas
 # Promedio
@@ -304,74 +278,56 @@ ggplotly(redes_prom_boxplot)
 #Variables Cualitativas
 #PROMEDIO
 #Sexo vs Promedio
-sexo_prom_boxplot<-ggplot(data, aes(x=Sexo,y=Promedio))+
+ggplot(data, aes(x=Sexo,y=Promedio))+
   geom_boxplot(fill = 2)+
   labs(title ="Diagrama de cajas de Sexo - Promedio\n",y="Horas promedio")+
   stat_boxplot(geom = "errorbar",
                width = 0.15)
-ggplotly(sexo_prom_boxplot)
 #Trabaja y Promedio
-trab_prom_boxplot<-ggplot(data, aes(x=Trabaja,y=Promedio))+
+ggplot(data, aes(x=Trabaja,y=Promedio))+
   geom_boxplot(fill = 2)+
   labs(title ="Diagrama de cajas de Trabaja - Promedio\n",y="Horas promedio")+
   stat_boxplot(geom = "errorbar",
                width = 0.15)
-ggplotly(trab_prom_boxplot)
 #Computador Exclusivo y Promedio
-comp_prom_boxplot<-ggplot(data, aes(x=Computador_uso_exclusivo,y=Promedio))+
+ggplot(data, aes(x=Computador_uso_exclusivo,y=Promedio))+
   geom_boxplot(fill = 2)+
   labs(title ="Diagrama de cajas de Uso exclusivo de computador - Promedio\n",y="Horas promedio")+
   stat_boxplot(geom = "errorbar",
                width = 0.15)
-ggplotly(comp_prom_boxplot)
 #Despierta_mas_de_1vez_durante_noche y Promedio
-despi_prom_boxplot<-ggplot(data, aes(x=Despierta_mas_de_1vez_durante_noche,y=Promedio))+
+ggplot(data, aes(x=Despierta_mas_de_1vez_durante_noche,y=Promedio))+
   geom_boxplot(fill=2)+
   labs(title ="Diagrama de cajas de Despertares Nocturnos - Promedio\n",y="Horas promedio")+
   stat_boxplot(geom = "errorbar",
                width = 0.15)
-ggplotly(despi_prom_boxplot)
-#Carrera y promedio
-carr_prom_boxplot<-ggplot(data, aes(x=Carrera,y=Promedio,fill=Carrera))+
-  geom_boxplot()+
-  labs(title ="Diagrama de cajas de Carrera - Promedio\n",y="Horas promedio")+
-  stat_boxplot(geom = "errorbar",
-               width = 0.15)+
-  theme(axis.text.x=element_blank(),
-        axis.ticks.x=element_blank() 
-  )
-ggplotly(carr_prom_boxplot)
-#Frecuencia_semanal_actividad_fisica y promedio
-frec_prom_boxplot<-ggplot(data, aes(x=Frecuencia_semanal_actividad_fisica,y=Promedio))+
-  geom_boxplot(fill=2)+
-  labs(title ="Diagrama de cajas de Frecuencia semanal de actividad fisica - Promedio\n",y="Horas promedio")+
-  stat_boxplot(geom = "errorbar",
-               width = 0.15)
-ggplotly(frec_prom_boxplot)
+
 
 #HORAS SUEÑO
 #Horas_promedio_diarias_sueño y Trabaja
-trab_sueño_boxplot<-ggplot(data, aes(x=Trabaja,y=Horas_promedio_diarias_sueño))+
+ggplot(data, aes(x=Trabaja,y=Horas_promedio_diarias_sueño))+
   geom_boxplot(fill=2)+
   labs(title ="Diagrama de cajas de Horas promedio de sueño - Trabaja\n",y="Horas promedio")+
   stat_boxplot(geom = "errorbar",
                width = 0.15)
+ggplotly(sp)
 #HORAS ESTUDIO
 #Horas_promedio_diarias_estudio y Trabaja
-trab_estudio_boxplot<-ggplot(data, aes(x=Trabaja,y=Horas_promedio_diarias_estudio))+
+sp<-ggplot(data, aes(x=Trabaja,y=Horas_promedio_diarias_estudio))+
   geom_boxplot(fill=2)+
-  labs(title ="Diagrama de cajas de Horas promedio de estudio - Trabaja\n",y="Horas promedio")+
+  labs(title ="Diagrama de cajas de Horas promedio de estudio - Trabaja\n",y="Horas Estudio")+
   stat_boxplot(geom = "errorbar",
                width = 0.15)
+sp
+ggplotly(sp)
 #HORAS EN REDES
 #Horas_promedio_diarias_en_redes y Trabaja
-trab_redes_boxplot<-ggplot(data, aes(x=Trabaja,y=Horas_promedio_diarias_en_redes))+
+ggplot(data, aes(x=Trabaja,y=Horas_promedio_diarias_en_redes))+
   geom_boxplot(fill=2)+
   labs(title ="Diagrama de cajas de Horas promedio en redes - Trabaja\n",y="Horas promedio")+
   stat_boxplot(geom = "errorbar",
                width = 0.15)
 #
-ggplotly(trab_sueño_boxplot)
 #HORAS ESTUDIO
 #Horas_promedio_diarias_estudio y 
 # Variables Cuantitativas
@@ -387,29 +343,30 @@ ggcorrplot(cor_matrix_cuanti,
            lab = TRUE)
 
 
-#Intervalos de confianza
+#Pruebas de hipotesis
+# Hipotesis 1 - Mujeres poseen mejor media que los hombres
 hombres<-data[data$Sexo=="M", ]
 mujeres<-data[data$Sexo=="F", ]
+# HO = varianzas iguales, HA=varianzas diferentes
 
-prom_hombres_8<-hombres[hombres$Promedio>8,]
 
-var(hombres$Promedio)
-var(mujeres$Promedio)
+#Verificacion de normalidad
 shapiro.test(hombres$Promedio)
 shapiro.test(mujeres$Promedio)
 
-# F test to compare two variances
+# F test para comparacion de varianzas con 95%
 var.test(x=hombres$Promedio, y=mujeres$Promedio,
       conf.level = 0.95)
-# T Test to compare differences of means
+##Como el valor-P es mayor que el nivel de significancia 5%, no se rechaza la hipótesis nula, es decir, las evidencias no son suficientes para afirmar que la varianzas son desiguales
+
+# T Test to compare differences of means and check who is greater.
+# HO = mean mujeres==mean hombres, HA=mean mujeres>mean hombres
 t.test(x=mujeres$Promedio, y=hombres$Promedio,
-       paired=FALSE, var.equal=FALSE,
+       paired=FALSE, var.equal=TRUE, alternative=c("greater"), 
        conf.level = 0.95)
-t.test(x=hombres$Promedio, y=mujeres$Promedio,
-       paired=FALSE, var.equal=FALSE,
-       conf.level = 0.95)
+#De la prueba se obtiene un valor-P muy pequeño, por lo tanto, podemos concluir que si hay diferencias significativas entre los 
+#tiempos promedios de cocción con T1 y T2, resultado que ya se sospechaba al observar la Figura 20.4
 # Test to compare proportions
-prop.test(x=10,n=77,conf.level=0.95)
 
 
 var_cuantitativas <- subset(raw_data, select = c("Promedio","Materias_Promedio_x_Termino","Horas_promedio_diarias_sueño","Horas_promedio_diarias_estudio","Horas_promedio_diarias_en_redes") )
